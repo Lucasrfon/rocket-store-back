@@ -1,4 +1,5 @@
 import joi from 'joi';
+import bcrypt from 'bcrypt';
 import { db } from '../dataBase/mongo.js';
 
 export async function validateNewUser(req, res, next) {
@@ -18,7 +19,7 @@ export async function validateNewUser(req, res, next) {
     if(await db.collection('users').findOne({email: user.email})) {
         return res.status(409).send('Email já cadastrado.');
     }
-
+    
     next();
 }
 
