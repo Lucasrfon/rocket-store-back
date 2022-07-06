@@ -15,10 +15,10 @@ export async function creatUser(req, res) {
 
 export async function loginUser(req, res) {
     try {
-        const user = req.body;
+        const email = res.locals.validEmail;
         const token = uuid();
 
-        await db.collection('sessions').insertOne({ email: user.email, token, generated: Date.now()});
+        await db.collection('sessions').insertOne({ email, token, generated: Date.now()});
         res.status(202).send('Login concluído!');
     } catch (error) {
         res.status(417).send('Erro no login.');
