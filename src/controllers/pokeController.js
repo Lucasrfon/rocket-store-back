@@ -5,7 +5,8 @@ export async function getPokemon (req, res){
     try {
         const pokemons = await db.collection('pokeCollection').find().toArray();
         res.status(201).send(pokemons);
-    } catch (error){
+    } catch(error) {
+        console.error(error);
         res.sendStatus(500);
     }
 }
