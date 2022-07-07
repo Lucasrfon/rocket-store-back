@@ -5,6 +5,7 @@ dotenv.config();
 const mongoClient = new MongoClient(process.env.MONGO_URI);
 let db = null;
 mongoClient.connect(() => {
+    console.log('db funcionando');
     db = mongoClient.db(process.env.DB_NAME);
 });
 

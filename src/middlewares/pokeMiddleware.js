@@ -4,7 +4,9 @@ export default async function validateRegister(req, res, next){
 
     const registerSchema = joi.object({
         name: joi.string().required(),
-        price:joi.number().required()
+        type: joi.string().required(),
+        price:joi.number().required(),
+        image:joi.string().required()
     });
 
     const register = req.body;
