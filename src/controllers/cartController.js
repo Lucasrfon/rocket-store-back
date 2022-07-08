@@ -1,4 +1,4 @@
-import { db } from "../dataBase/mongo";
+import { db } from "../dataBase/mongo.js";
 
 export async function getCart(req, res) {
     try {

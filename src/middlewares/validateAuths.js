@@ -45,7 +45,7 @@ export async function validateLogin(req, res, next) {
     next();
 }
 
-export default async function validateAuth(req, res, next) {
+export async function validateToken(req, res, next) {
     const { authorization } = req.headers;
 
   const token = authorization?.replace('Bearer ', '');
