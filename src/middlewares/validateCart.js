@@ -1,5 +1,5 @@
 import joi from "joi";
-import { db } from "../dataBase/mongo.js";
+import { db } from '../dbStrategy/mongo.js';
 
 export async function validateNewCart(req, res, next) {
     try {

@@ -1,6 +1,6 @@
 import joi from 'joi';
 import bcrypt from 'bcrypt';
-import { db } from '../dataBase/mongo.js';
+import { db } from '../dbStrategy/mongo.js';
 
 export async function validateNewUser(req, res, next) {
     try {
