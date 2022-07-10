@@ -1,13 +1,10 @@
 import { db, ObjectId } from "../dataBase/mongo.js";
 
-import { getCart, postCart } from "./cartController.js";
-
-
 export default async function postCheckout (req, res){
     try {
         const {name, card, cvv, valid } = req.body;
-        const cart = getCart(res);
 
+        const cart = await db.collection('cart').findOne({email: session.email});
 
         await db.collection('pokeBuys').insertOne({
             cart: cart,
