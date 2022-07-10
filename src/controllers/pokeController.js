@@ -13,7 +13,7 @@ export async function getPokemon (req, res){
 
 export async function postPokemon (req, res){
     try {
-        const {name, price} = req.body;
+        const {name, price, type, image} = req.body;
 
         await db.collection('pokeCollection').insertOne({
             name: req.body.name,
