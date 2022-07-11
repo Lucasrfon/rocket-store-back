@@ -4,11 +4,8 @@ import dotenv from 'dotenv';
 import authRouter from './routes/authRouter.js';
 import pokeRouter from './routes/pokeRouter.js';
 import cartRouter from './routes/cartRouter.js';
-
 import checkoutRouter from './routes/checkoutRouter.js';
-
 import removeTokens from './middlewares/removeTokens.js';
-
 
 dotenv.config();
 
