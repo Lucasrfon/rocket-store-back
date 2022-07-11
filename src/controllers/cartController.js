@@ -26,10 +26,10 @@ export async function cartUpdate(req, res) {
     try {
         const cart = req.body;
         await db.collection('cart').updateOne(
-            {_id: new ObjectId(cart._id)},
-            { $set: {products: cart.products}}
+            {email: cart.email},
+            { $set: {products: [...cart.products]}}
         );
-        res.send('atualizado')
+        res.send('atualizado');
     } catch (error) {
         res.status(417).send('Erro ao atualizar carrinho.');
     }

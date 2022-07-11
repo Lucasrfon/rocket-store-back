@@ -1,5 +1,5 @@
 import joi from "joi";
-import { db } from '../dbStrategy/mongo.js';
+import { db, ObjectId } from '../dbStrategy/mongo.js';
 
 export async function validateNewCart(req, res, next) {
     try {
@@ -37,7 +37,7 @@ export async function validateNewCart(req, res, next) {
 export async function validateCartUpdate(req, res, next) {
     try {
         const cartUpdateSchema = joi.object({
-            _id: joi.string().required(),
+            email: joi.string().email().required(),
             products: joi.array().items(joi.object({
                 name: joi.string().pattern(/^[a-zA-Z]*$/).required(),
                 price: joi.number().required(),
@@ -56,5 +56,28 @@ export async function validateCartUpdate(req, res, next) {
         
     } catch (error) {
         res.status(417).send('Erro ao atualizar cadastro.');
+    }
+}
+
+export async function validateRemoveCart(req, res, next) {
+    try {
+        const cartRemoveSchema = joi.object({
+            _id: joi.string().required(),
+        });
+        const cart = req.body;
+        const validate = cartRemoveSchema.validate(cart);
+
+        if(validate.error) {
+            return res.status(406).send(validate.error.details[0].message);
+        }
+
+        if(await db.collection('cart').findOne({_id: new ObjectId(cart._id)})) {
+            next();
+        }
+
+        return res.status(404).send('Carrinho inexistente.')
+
+    } catch (error) {
+        res.status(417).send('Erro ao remover carrinho.');
     }
 }
