@@ -4,7 +4,7 @@ export default async function postCheckout (req, res){
     try {
         const {name, card, cvv, valid } = req.body;
 
-        const cart = await db.collection('cart').findOne({email: session.email});
+        const cart = getCart();
 
         await db.collection('pokeBuys').insertOne({
             cart: cart,
