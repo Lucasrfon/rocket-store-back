@@ -2,11 +2,11 @@ import { db, ObjectId } from "../dbStrategy/mongo.js";
 
 export default async function postCheckout (req, res){
     try {
-        const {name, card, cvv, valid, cart } = req.body;
-  
+        const {name, card, cvv, valid} = req.body;
+        const cart = await db.collection('cart').findOne({email: session.email});
         await db.collection('pokeBuys').insertOne({
 
-            cart: req.body.cart,
+            cart: cart,
             name: req.body.name,
             card: req.body.card,
             cvv:req.body.cvv,
