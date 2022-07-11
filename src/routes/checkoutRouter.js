@@ -6,6 +6,6 @@ import { validateNewCart } from '../middlewares/validateCart.js';
 
 const router = Router();
 
-router.post('/checkout')
+router.post('/checkout', validateToken, validateLogin, validateCheckout, validateNewCart, checkoutController)
 
 export default router;
