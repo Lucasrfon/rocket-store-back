@@ -15,6 +15,7 @@ export async function getCart(req, res) {
     try {
         const session = res.locals.session;
         const cart = await db.collection('cart').findOne({email: session.email});
+        console.log(cart)
 
         res.status(200).send(cart);
     } catch (error) {
@@ -26,10 +27,10 @@ export async function cartUpdate(req, res) {
     try {
         const cart = req.body;
         await db.collection('cart').updateOne(
-            {_id: new ObjectId(cart._id)},
-            { $set: {products: cart.products}}
+            {email: cart.email},
+            { $set: {products: [...cart.products]}}
         );
-        res.send('atualizado')
+        res.send('atualizado');
     } catch (error) {
         res.status(417).send('Erro ao atualizar carrinho.');
     }
