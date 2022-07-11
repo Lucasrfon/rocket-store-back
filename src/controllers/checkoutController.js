@@ -1,4 +1,4 @@
-import { db, ObjectId } from "../dataBase/mongo.js";
+import { db, ObjectId } from "../dbStrategy/mongo.js";
 
 export default async function postCheckout (req, res){
     try {
