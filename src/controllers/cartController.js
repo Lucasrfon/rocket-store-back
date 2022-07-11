@@ -15,6 +15,7 @@ export async function getCart(req, res) {
     try {
         const session = res.locals.session;
         const cart = await db.collection('cart').findOne({email: session.email});
+        console.log(cart)
 
         res.status(200).send(cart);
     } catch (error) {

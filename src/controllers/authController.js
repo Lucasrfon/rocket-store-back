@@ -20,7 +20,7 @@ export async function loginUser(req, res) {
         const user = res.locals.validEmail;
         const token = uuid();
 
-        await db.collection('sessions').insertOne({ userid: new ObjectId(user._id), token, generated: Date.now()});
+        await db.collection('sessions').insertOne({ email: user.email, token, generated: Date.now()});
         res.status(202).send(token);
     } catch (error) {
         res.status(417).send('Erro no login.');
