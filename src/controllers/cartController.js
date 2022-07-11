@@ -4,7 +4,7 @@ export async function postCart(req, res) {
     try {
         const newCart = req.body;
         const cart = await db.collection('cart').insertOne(newCart);
-        res.status(201).send(new ObjectId(cart._id));
+        res.status(201).send(cart.insertedId);
 
     } catch (error) {
         res.status(417).send('Erro ao cadastrar carrinho.');
