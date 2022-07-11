@@ -4,10 +4,10 @@ export default async function validateRegister(req, res, next){
 
     const checkoutSchema = joi.object({
         cart:joi.object().required(),
-        cardName: joi.string().length(10).pattern(/^[a-zA-Z]+$/).required(),
-        cardNumber: joi.string().length(10).pattern(/^[0-9]+$/).required(),
-        cardCode:joi.string().length(3).pattern(/^[0-9]+$/).required(),
-        cardValid:joi.string().length(4).pattern(/^[0-9]+$/).required(),
+        cardName: joi.string().min(6).pattern(/^[a-zA-Z]+$/).required(),
+        cardNumber: joi.string().min(8).pattern(/^[0-9]+$/).required(),
+        cardCode:joi.string().min(3).pattern(/^[0-9]+$/).required(),
+        cardValid:joi.string().min(4).pattern(/^[0-9]+$/).required(),
     });
 
     const checkout = req.body;
