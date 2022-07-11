@@ -37,7 +37,7 @@ export async function validateNewCart(req, res, next) {
 export async function validateCartUpdate(req, res, next) {
     try {
         const cartUpdateSchema = joi.object({
-            _id: joi.string().required(),
+            email: joi.string().email().required(),
             products: joi.array().items(joi.object({
                 name: joi.string().pattern(/^[a-zA-Z]*$/).required(),
                 price: joi.number().required(),
