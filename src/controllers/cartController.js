@@ -25,9 +25,10 @@ export async function getCart(req, res) {
 export async function cartUpdate(req, res) {
     try {
         const cart = req.body;
+        console.log(cart)
         await db.collection('cart').updateOne(
             {_id: new ObjectId(cart._id)},
-            { $set: {products: cart.products}}
+            { $set: {products: [...cart.products]}}
         );
         res.send('atualizado')
     } catch (error) {
